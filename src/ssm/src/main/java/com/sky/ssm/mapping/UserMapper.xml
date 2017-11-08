@@ -305,13 +305,13 @@
     from user
     <where>
     <if test="userName != null and userName != ''" >
-        and user_name = #{userName,jdbcType=VARCHAR}
+        and user_name like CONCAT('%','${userName}','%' ) 
       </if>
       <if test="password != null and password != ''" >
         and password = #{password,jdbcType=VARCHAR}
       </if>
       <if test="realName != null and realName != ''" >
-        and real_name = #{realName,jdbcType=VARCHAR}
+        and real_name like CONCAT('%','${realName}','%' ) 
       </if>
       <if test="sex != null" >
         and sex = #{sex,jdbcType=INTEGER}
@@ -358,13 +358,13 @@
     from user
     <where>
     <if test="userName != null and userName != ''" >
-        and user_name = #{userName,jdbcType=VARCHAR}
+        and user_name like CONCAT('%','${userName}','%' ) 
       </if>
       <if test="password != null and password != ''" >
         and password = #{password,jdbcType=VARCHAR}
       </if>
       <if test="realName != null and realName != ''" >
-        and real_name = #{realName,jdbcType=VARCHAR}
+        and real_name like CONCAT('%','${realName}','%' ) 
       </if>
       <if test="sex != null" >
         and sex = #{sex,jdbcType=INTEGER}

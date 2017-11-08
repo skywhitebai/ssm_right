@@ -2,6 +2,8 @@ package com.sky.ssm.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class User {
     private Integer userId;
 
@@ -25,12 +27,10 @@ public class User {
 
     private Integer deleted;
 
-    private Date lastLoginTime;
-
+    private Date lastLoginTime; 
     private Date createTime;
 
-    private Integer createBy;
-
+    private Integer createBy;  
     private Date updateTime;
 
     private Integer updateBy;

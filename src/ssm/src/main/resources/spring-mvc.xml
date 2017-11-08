@@ -31,6 +31,10 @@
 				<ref bean="mappingJacksonHttpMessageConverter" />    <!-- JSON转换器 -->
 			</list>
 		</property>
+		 <!-- 日期格式转换 -->    
+	    <property name="webBindingInitializer">    
+	        <bean class="com.sky.ssm.common.converter.DateConverter" />    
+	    </property>    
 	</bean>
 
 

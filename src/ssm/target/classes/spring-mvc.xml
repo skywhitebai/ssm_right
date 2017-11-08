@@ -12,6 +12,12 @@
 
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.sky.ssm.controller" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">    
+	    <!-- 日期格式转换 -->    
+	    <property name="webBindingInitializer">    
+	        <bean class="com.sky.ssm.common.converter.DateConverter" />    
+	    </property>    
+	</bean>  
 
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter"
