@@ -1,0 +1,1 @@
+[{menuId:0,menuName:'菜单',url:'',parentId:null,remark:'',orderBy:null,createTimeStr:'',updateTimeStr:'',children:[{menuId:1,menuName:'用户管理',url:'user/list',parentId:0,remark:'',orderBy:null,createTimeStr:'null',updateTimeStr:'null'},{menuId:2,menuName:'菜单管理',url:'menu/list',parentId:0,remark:'',orderBy:null,createTimeStr:'null',updateTimeStr:'null'}]}]

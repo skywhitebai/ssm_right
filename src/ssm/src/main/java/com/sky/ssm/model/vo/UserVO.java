@@ -7,6 +7,9 @@ public class UserVO extends User {
 	int pageSize=10;
 	int pageIndex=1;
 	int startRow=0;
+	String lastLoginTimeStr;
+	String createTimeStr;
+	String updateTimeStr;
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -33,5 +36,25 @@ public class UserVO extends User {
 			startRow=0;
 		}
 	}
+	public String getLastLoginTimeStr() {
+		return lastLoginTimeStr;
+	}
+	public void setLastLoginTimeStr(String lastLoginTimeStr) {
+		this.lastLoginTimeStr = lastLoginTimeStr;
+	}
+	public String getCreateTimeStr() {
+		return createTimeStr;
+	}
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+	public String getUpdateTimeStr() {
+		return updateTimeStr;
+	}
+	public void setUpdateTimeStr(String updateTimeStr) {
+		this.updateTimeStr = updateTimeStr;
+	}
+	
+	
 	
 }

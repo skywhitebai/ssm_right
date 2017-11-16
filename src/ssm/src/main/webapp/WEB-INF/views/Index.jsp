@@ -23,7 +23,7 @@
 <title>权限管理系统</title>
 </head>
 <body class="easyui-layout">	
-		<div data-options="region:'north'" style="height: 50px">权限管理系统</div>
+		<div data-options="region:'north'" style="height: 50px">权限管理系统--欢迎${loginUser.userName }</div>
 		<!-- <div data-options="region:'south',split:true" style="height: 50px;">skywhite权限管理系统</div> -->
 		<!-- <div data-options="region:'east',split:true" title="右"
 			style="width: 100px;">

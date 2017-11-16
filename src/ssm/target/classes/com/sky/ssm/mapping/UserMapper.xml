@@ -13,10 +13,10 @@
     <result column="qq" property="qq" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="INTEGER" />
-    <result column="last_login_time" property="lastLoginTime" jdbcType="DATE" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -36,15 +36,20 @@
     <result column="qq" property="qq" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="INTEGER" />
-    <result column="last_login_time" property="lastLoginTime" jdbcType="DATE" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="lastLoginTimeStr" property="lastLoginTimeStr" jdbcType="VARCHAR" />
+    <result column="createTimeStr" property="createTimeStr" jdbcType="VARCHAR" />
+    <result column="updateTimeStr" property="updateTimeStr" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List_VO" >
     user_id, user_name, password, real_name, sex, email, moblie, wechat, qq, remark, 
-    deleted, last_login_time, create_time, create_by, update_time, update_by
+    deleted, last_login_time,DATE_FORMAT(last_login_time,'%Y-%m-%d %T') lastLoginTimeStr,
+    create_time,DATE_FORMAT(create_time,'%Y-%m-%d %T') createTimeStr, create_by,
+    update_time,DATE_FORMAT(update_time,'%Y-%m-%d %T') updateTimeStr, update_by
   </sql>
   
   
@@ -68,8 +73,8 @@
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
       #{moblie,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=DATE}, 
-      #{createTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=DATE}, 
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.sky.ssm.model.User" >
@@ -159,16 +164,16 @@
         #{deleted,jdbcType=INTEGER},
       </if>
       <if test="lastLoginTime != null" >
-        #{lastLoginTime,jdbcType=DATE},
+        #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
         #{updateBy,jdbcType=INTEGER},
@@ -209,16 +214,16 @@
         deleted = #{deleted,jdbcType=INTEGER},
       </if>
       <if test="lastLoginTime != null" >
-        last_login_time = #{lastLoginTime,jdbcType=DATE},
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createBy != null" >
         create_by = #{createBy,jdbcType=INTEGER},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=INTEGER},
@@ -238,10 +243,10 @@
       qq = #{qq,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=INTEGER},
-      last_login_time = #{lastLoginTime,jdbcType=DATE},
-      create_time = #{createTime,jdbcType=DATE},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=INTEGER},
-      update_time = #{updateTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -282,16 +287,16 @@
         and deleted = #{deleted,jdbcType=INTEGER}
       </if>
       <if test="lastLoginTime != null" >
-        and last_login_time = #{lastLoginTime,jdbcType=DATE}
+        and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createTime != null" >
-        and create_time = #{createTime,jdbcType=DATE}
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createBy != null" >
         and create_by = #{createBy,jdbcType=INTEGER}
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=INTEGER},
@@ -335,16 +340,16 @@
         and deleted = #{deleted,jdbcType=INTEGER}
       </if>
       <if test="lastLoginTime != null" >
-        and last_login_time = #{lastLoginTime,jdbcType=DATE}
+        and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createTime != null" >
-        and create_time = #{createTime,jdbcType=DATE}
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createBy != null" >
         and create_by = #{createBy,jdbcType=INTEGER}
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=INTEGER},
@@ -388,16 +393,16 @@
         and deleted = #{deleted,jdbcType=INTEGER}
       </if>
       <if test="lastLoginTime != null" >
-        and last_login_time = #{lastLoginTime,jdbcType=DATE}
+        and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createTime != null" >
-        and create_time = #{createTime,jdbcType=DATE}
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
       <if test="createBy != null" >
         and create_by = #{createBy,jdbcType=INTEGER}
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
         update_by = #{updateBy,jdbcType=INTEGER},

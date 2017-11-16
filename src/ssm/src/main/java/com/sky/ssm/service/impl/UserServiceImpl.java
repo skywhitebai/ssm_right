@@ -36,9 +36,13 @@ public class UserServiceImpl implements IUserService {
 		int result=userMapper.insert(user);
 		return result>0;
 	}
-	public void Update(User user) {
-		// TODO Auto-generated method stub
-		
+	public boolean Update(User user) {
+		int result=userMapper.updateByPrimaryKey(user);
+		return result>0;
+	}
+	public boolean updateByPrimaryKeySelective(User user) {
+		int result=userMapper.updateByPrimaryKeySelective(user);
+		return result>0;
 	}
 
 }

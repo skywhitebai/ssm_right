@@ -21,14 +21,14 @@ function bindData() {
         striped: true,
         collapsible: true,
         pagination: true,
-        //singleSelect:true, 
+        //singleSelect:true,        
         pageSize: 10,
         pageList: [10,15, 20,30, 50],
         rownumbers: true,
         //sortName: 'ID',    //根据某个字段给easyUI排序  
         //sortOrder: 'asc',
         remoteSort: false,
-        idField: 'userID',
+        //idField: 'userID',
         queryParams: queryParams,  //异步查询的参数  
         columns: [[
             { field: 'ck', checkbox: true },   //选择  
@@ -57,19 +57,13 @@ function bindData() {
  					}
  				} 
              },
-             { title: '最后登录时间', field: 'lastLoginTime', width: 200,
-            	 formatter : function(value, row, index) {  
-  				} 
+             { title: '最后登录时间', field: 'lastLoginTimeStr', width: 200
              },
-             { title: '创建时间', field: 'createTime', width: 180 ,
-            	 formatter : function(value, row, index) {
-   				} 
+             { title: '创建时间', field: 'createTimeStr', width: 180 
               },
-             { title: '修改时间', field: 'updateTime', width: 180 ,
-             	 formatter : function(value, row, index) {
-   				} 
+             { title: '修改时间', field: 'updateTimeStr', width: 180 
               },
-             { title: '备注', field: 'Remark', width: 300 }
+             { title: '备注', field: 'remark', width: 300 }
         ]],
         toolbar: [{
             id: 'btnAdd',
@@ -106,6 +100,7 @@ function bindData() {
             handler: function () {
                 //实现刷新栏目中的数据  
                 $(dg).datagrid("reload");
+                //$(dg).datagrid('clearSelections');
             }
         }],
         onDblClickRow: function (rowIndex, rowData) {
@@ -121,7 +116,7 @@ function ShowEditDialog() {
     if (rows && rows.length == 1) {
         $('#dlg').dialog('open').dialog('setTitle', '修改');
         $('#frm').form('load', rows[0]);
-        $("#tr_time").hide();
+        $(".tr_edit_hide").hide();
         $("#btn_save").show();
     } else {
         $.messager.alert("提示", "请选择一条记录.");
@@ -132,7 +127,7 @@ function ShowViewDialog() {
     if (rows && rows.length == 1) {
         $('#dlg').dialog('open').dialog('setTitle', '查看');
         $('#frm').form('load', rows[0]);
-        $("#tr_time").show();
+        $(".tr_edit_hide").show();
         $("#btn_save").hide();
     } else {
         $.messager.alert("提示", "请选择一条记录.");
@@ -141,7 +136,7 @@ function ShowViewDialog() {
 function ShowAddDialog() {
     $('#dlg').dialog('open').dialog('setTitle', '添加');
     $('#frm').form('clear');
-    $("#tr_time").hide();
+    $(".tr_edit_hide").hide();
     $("#btn_save").show();
 }
 
@@ -202,3 +197,4 @@ function Delete() {
         }
     });
 }
+

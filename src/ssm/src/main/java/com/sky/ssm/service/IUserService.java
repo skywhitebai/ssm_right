@@ -10,7 +10,9 @@ public interface IUserService {
 
 	public String GetUserList(UserVO userVO);
 
-	public void Update(User user);
+	public boolean Update(User user);
 
 	public boolean Insert(User user);
+
+	public boolean updateByPrimaryKeySelective(User user);
 }

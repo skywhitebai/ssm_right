@@ -82,12 +82,12 @@ public class UserController {
     		if(userOld==null){
     			return JsonResult.fail("用户不存在");
     		}
-    		
+    		user.setLastLoginTime(userOld.getLastLoginTime());
     		user.setCreateBy(userOld.getCreateBy());
     		user.setCreateTime(userOld.getCreateTime());
     		user.setUpdateBy(0);
     		user.setUpdateTime(new Date());
-    		userService.Update(user);
+    		userService.updateByPrimaryKeySelective(user);
         	return JsonResult.successMessage("修改成功");
     	}
     }

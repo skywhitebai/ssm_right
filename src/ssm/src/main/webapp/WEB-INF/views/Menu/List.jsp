@@ -17,7 +17,9 @@
 <script
 	src="${APP_PATH }/static/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
 <script
-	src="${APP_PATH }/static/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>
+	src="${APP_PATH }/static/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>	
+<script src="${APP_PATH }/static/js/common.js"></script>
+<script src="${APP_PATH }/static/css/common.css?2"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -39,42 +41,25 @@
 	<form id="frm" method="post">
 			<table>
 				<tr style="display: none">
-					<td>userId：</td>
-					<td><input class="easyui-validatebox textbox" name="userId">
+					<td>menuId：</td>
+					<td><input class="easyui-validatebox textbox" name="menuId">
 					</td>
 				</tr>
 				<tr>
-					<td>用户名称：</td>
-					<td><input class="easyui-textbox" id="frm_userName" name="userName"
+					<td>菜单名称：</td>
+					<td><input class="easyui-textbox" id="frm_menuName" name="menuName"
 						data-options="required:true"></td>
-					<td>用户姓名：</td>
-					<td><input class="easyui-textbox" id="frm_realName"  name="realName"
-						data-options="required:true"></td>
+					<td>父菜单：</td>
+					<td><input class="easyui-combotree" id="frm_parentId" name="parentId" data-options="valueField:'id',textField:'text',required:true"></td>
 				</tr>
 				<tr>
-					<td>性别：</td>
-					<td><select class="easyui-combobox" name="sex"
-						style="width: 180px;">
-							<option value="1">男</option>
-							<option value="2">女</option>
-					</select></td>
-					<td>email：</td>
-					<td><input class="easyui-textbox" name="email"></td>
-				</tr>
+					
+					<td>url：</td>
+					<td colspan="3"><input class="easyui-textbox" name="url"></td>
+				</tr>				
 				<tr>
-					<td>电话：</td>
-					<td><input class="easyui-textbox" name="moblie"></td>
-					<td>微信：</td>
-					<td><input class="easyui-textbox" name="wechat"></td>
-				</tr>
-				<tr>
-					<td>QQ：</td>
-					<td><input class="easyui-textbox" name="qq"></td>
-				</tr>
-				<tr class="tr_edit_hide">				
-					<td>最近登录时间：</td>
-					<td><input class="easyui-textbox"
-						readonly="readonly" name="lastLoginTimeStr"></td>
+					<td>排序：</td>
+					<td><input class="easyui-numberbox" id="frm_orderBy" name="orderBy" data-options="min:1,required:true"></td>
 				</tr>
 				<tr class="tr_edit_hide">
 					<td>创建时间：</td>
@@ -101,6 +86,5 @@
 		</form>
     </div>
 </body>
-<script src="${APP_PATH }/static/js/User/List.js?7"></script>
-<script src="${APP_PATH }/static/js/common.js"></script>
+<script src="${APP_PATH }/static/js/Menu/List.js?1"></script>
 </html>
