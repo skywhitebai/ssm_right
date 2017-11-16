@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sky.ssm.common.CommHelper;
@@ -93,8 +94,7 @@ public class MenuController {
     		menuService.Insert(menu);
         	return JsonResult.successMessage("添加成功");
     	}
-    	else{
-    		
+    	else{    		
     		Menu menuOld=menuService.getMenuByMenuId(menu.getMenuId());
     		if(menuOld==null){
     			return JsonResult.fail("菜单不存在");
@@ -107,5 +107,14 @@ public class MenuController {
         	return JsonResult.successMessage("修改成功");
     	}
     }
-	
+	@ResponseBody
+	@RequestMapping("delete")
+	public JsonResult delete(Integer menuId){
+		if(menuId==null){
+			return JsonResult.fail("请选择要删除的数据");
+		}
+		menuService.deleteByMenuId(menuId);
+		 
+		 return JsonResult.successMessage("删除成功");
+	}
 }

@@ -1,11 +1,14 @@
 package com.sky.ssm.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sky.ssm.common.CommHelper;
+import com.sky.ssm.common.JsonResult;
 import com.sky.ssm.common.PageInfo;
 import com.sky.ssm.dao.MenuMapper;
 import com.sky.ssm.model.Menu;
@@ -142,12 +145,8 @@ public class MenuServiceImpl implements IMenuService {
 				sbMenuTree.append(menu.getMenuName());
 				sbMenuTree.append("',id:");
 				sbMenuTree.append(menu.getMenuId());
-				if(!CommHelper.StringIsNullOrEmpety(menu.getUrl())){
-					sbMenuTree.append(",attributes:{url:'");
-					sbMenuTree.append(menu.getUrl());
-					sbMenuTree.append("'}");
-				}
-				getTree(menuList,menu.getMenuId(),sbMenuTree);
+				
+				menuComboTree(menuList,menu.getMenuId(),sbMenuTree);
 				sbMenuTree.append("}");
 			}
 		}
@@ -164,6 +163,13 @@ public class MenuServiceImpl implements IMenuService {
 	}
 	public boolean updateByPrimaryKeySelective(Menu menu) {
 		int result=menuMapper.updateByPrimaryKeySelective(menu);
+		return result>0;
+	}
+	public void deleteByArray(Integer[] idArray) {
+		menuMapper.deleteByArray(idArray);
+	}
+	public boolean deleteByMenuId(Integer menuId) {
+		int result=menuMapper.deleteByPrimaryKey(menuId);
 		return result>0;
 	}
 }

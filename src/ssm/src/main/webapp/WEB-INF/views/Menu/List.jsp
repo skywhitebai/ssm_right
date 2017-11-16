@@ -19,15 +19,17 @@
 <script
 	src="${APP_PATH }/static/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>	
 <script src="${APP_PATH }/static/js/common.js"></script>
-<script src="${APP_PATH }/static/css/common.css?2"></script>
+<link
+	href="${APP_PATH }/static/css/common.css"
+	rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<!--查询条件-->
 	<div class="easyui-panel">
-		用户名称： <input id="userName" class="easyui-textbox" style="width: 180px;">
-		用户姓名： <input id="realName" class="easyui-textbox" style="width: 180px;">
+		菜单名称： <input id="menuName" class="easyui-textbox" style="width: 180px;">
+		父菜单： <input id="parentId" class="easyui-combotree" style="width: 180px;">
 		<a href="javascript:void(0)" id="btn_search" class="easyui-linkbutton"
 			data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
 	</div>

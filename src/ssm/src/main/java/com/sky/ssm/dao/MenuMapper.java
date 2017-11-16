@@ -25,4 +25,6 @@ public interface MenuMapper {
 	int getMenuListCount(MenuVO menuVO);
 
 	List<MenuVO> getMenuList(MenuVO menuVO);
+
+	void deleteByArray(Integer[] idArray);
 }

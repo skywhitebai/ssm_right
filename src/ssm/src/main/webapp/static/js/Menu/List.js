@@ -12,6 +12,12 @@ function bindData() {
 	dg = '#dg';
 	url = "menuList";
 	title = "菜单管理";
+	menuName = $('#menuName').val();
+	parentId = $('#parentId').val();
+	queryParams = {
+		menuName : menuName,
+		parentId : parentId
+	};
 	$(dg).datagrid({ // 定位到Table标签，Table标签的ID是grid
 		url : url, // 指向后台的Action来获取当前菜单的信息的Json格式的数据
 		title : title,
@@ -21,14 +27,19 @@ function bindData() {
 		striped : true,
 		collapsible : true,
 		pagination : true,
-		// singleSelect:true,
+		singleSelect : true,
 		pageSize : 10,
 		pageList : [ 10, 15, 20, 30, 50 ],
 		rownumbers : true,
 		// sortName: 'ID', //根据某个字段给easyUI排序
 		// sortOrder: 'asc',
+		queryParams : queryParams,
 		remoteSort : false,
 		columns : [ [ {
+			field : 'ck',
+			checkbox : true
+		}, // 选择
+		{
 			title : '菜单名称',
 			field : 'menuName',
 			width : 200
@@ -170,15 +181,15 @@ function Delete() {
 		$.messager.alert("提示", "请选择要删除的数据.");
 		return;
 	}
+	if (rows.length>1) {
+		$.messager.alert("提示", "请选择一条数据.");
+		return;
+	}
+	
 	$.messager.confirm('提示', '确认删除这' + rows.length + '条数据吗？', function(r) {
 		if (r) {
-			var IDS = '';
-			for (var i = 0; i < rows.length; i++) {
-				IDS += ',' + rows[i].id;
-			}
-			$.post('delete', {
-				IDS : IDS
-			}, function(data) {
+			
+			$.post('delete', {menuId:rows[0].menuId}, function(data) {
 				if (data.status == 1) {
 					$('#dlg').dialog('close');
 					bindData();
@@ -189,9 +200,15 @@ function Delete() {
 		}
 	});
 }
-function bindParentId(){
-	 $.post('menucombotree', function (data) {
-         var res = eval('(' + data.data + ')');
-         $("#frm_parentId").combotree('loadData', res);
-     });
+function bindParentId() {
+	$.post('menucombotree', function(data) {
+		var res = eval('(' + data.data + ')');
+		$("#frm_parentId").combotree('loadData', res);
+		var resall = eval('(' + data.data + ')');
+		resall.unshift({
+			'id' : '',
+			'text' : '全部'
+		});// 向json添加全部
+		$("#parentId").combotree('loadData', resall);
+	});
 }

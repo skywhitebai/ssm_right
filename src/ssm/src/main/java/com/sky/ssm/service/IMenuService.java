@@ -1,5 +1,6 @@
 package com.sky.ssm.service;
 
+import com.sky.ssm.common.JsonResult;
 import com.sky.ssm.model.Menu;
 import com.sky.ssm.model.vo.MenuVO;
 
@@ -18,5 +19,9 @@ public interface IMenuService {
 	Menu getMenuByMenuId(Integer menuId);
 
 	boolean updateByPrimaryKeySelective(Menu menu);
+
+	void deleteByArray(Integer[] idArray);
+
+	boolean deleteByMenuId(Integer menuId);
 
 }
