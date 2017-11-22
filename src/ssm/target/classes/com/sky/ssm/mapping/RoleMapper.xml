@@ -10,8 +10,26 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
   </resultMap>
+    <resultMap id="BaseResultMapVO" type="com.sky.ssm.model.vo.RoleVO" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+	<result column="createTimeStr" property="createTimeStr"
+			jdbcType="VARCHAR" />
+	<result column="updateTimeStr" property="updateTimeStr"
+			jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     role_id, role_name, remark, create_time, create_by, update_time, update_by
+  </sql>
+  <sql id="Base_Column_ListVO" >
+    role_id, role_name, remark, create_time, create_by, update_time, update_by,
+    DATE_FORMAT(create_time,'%Y-%m-%d %T') createTimeStr,DATE_FORMAT(update_time,'%Y-%m-%d %T')
+		updateTimeStr
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -114,4 +132,54 @@
       update_by = #{updateBy,jdbcType=INTEGER}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
+  
+  <select id="getRoleListCount"	resultType="java.lang.Integer" parameterType="com.sky.ssm.model.vo.RoleVO" >
+    select count(*) from role
+    <where>
+      <if test="roleName != null" >
+        and role_name like CONCAT('%','${roleName}','%' )
+      </if>
+      <if test="remark != null" >
+        and remark like CONCAT('%','${remark}','%' )
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null" >
+        and create_by = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null" >
+        and update_by = #{updateBy,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getRoleList" resultMap="BaseResultMapVO" parameterType="com.sky.ssm.model.vo.RoleVO" >
+    select 
+	<include refid="Base_Column_ListVO" />
+	 from role
+    <where>
+      <if test="roleName != null" >
+        and role_name like CONCAT('%','${roleName}','%' )
+      </if>
+      <if test="remark != null" >
+        and remark like CONCAT('%','${remark}','%' )
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null" >
+        and create_by = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null" >
+        and update_by = #{updateBy,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

@@ -28,8 +28,7 @@
 <body>
 	<!--查询条件-->
 	<div class="easyui-panel">
-		菜单名称： <input id="menuName" class="easyui-textbox" style="width: 180px;">
-		父菜单： <input id="parentId" class="easyui-combotree" style="width: 180px;">
+		角色名称： <input id="roleName" class="easyui-textbox" style="width: 180px;">
 		<a href="javascript:void(0)" id="btn_search" class="easyui-linkbutton"
 			data-options="iconCls:'icon-search'" style="width: 80px">查 询</a>
 	</div>
@@ -43,25 +42,14 @@
 	<form id="frm" method="post">
 			<table>
 				<tr style="display: none">
-					<td>menuId：</td>
+					<td>roleId：</td>
 					<td><input class="easyui-validatebox textbox" name="menuId">
 					</td>
 				</tr>
 				<tr>
-					<td>菜单名称：</td>
-					<td><input class="easyui-textbox" id="frm_menuName" name="menuName"
+					<td>角色名称：</td>
+					<td><input class="easyui-textbox" id="frm_roleName" name="menuName"
 						data-options="required:true"></td>
-					<td>父菜单：</td>
-					<td><input class="easyui-combotree" id="frm_parentId" name="parentId" data-options="valueField:'id',textField:'text',required:true"></td>
-				</tr>
-				<tr>
-					
-					<td>url：</td>
-					<td colspan="3"><input class="easyui-textbox" name="url"></td>
-				</tr>				
-				<tr>
-					<td>排序：</td>
-					<td><input class="easyui-numberbox" id="frm_orderBy" name="orderBy" data-options="min:1,required:true"></td>
 				</tr>
 				<tr class="tr_edit_hide">
 					<td>创建时间：</td>
@@ -88,5 +76,5 @@
 		</form>
     </div>
 </body>
-<script src="${APP_PATH }/static/js/Menu/List.js?2"></script>
+<script src="${APP_PATH }/static/js/Role/List.js?2"></script>
 </html>

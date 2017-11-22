@@ -40,6 +40,11 @@ function bindData() {
 			checkbox : true
 		}, // 选择
 		{
+			title : '菜单id',
+			field : 'menuId',
+			width : 200
+		},
+		{
 			title : '菜单名称',
 			field : 'menuName',
 			width : 200
@@ -166,6 +171,7 @@ function Save() {
 			if (res.status == 1) {
 				$('#dlg').dialog('close');
 				bindData();
+				bindParentId();
 			} else {
 				$.messager.alert("提示", res.message);
 			}
@@ -193,6 +199,7 @@ function Delete() {
 				if (data.status == 1) {
 					$('#dlg').dialog('close');
 					bindData();
+					bindParentId();
 				} else {
 					$.messager.alert("提示", data.message);
 				}
